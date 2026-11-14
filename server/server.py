@@ -124,7 +124,9 @@ def main():
                     help='canonical data package (gzip grids) used by the API')
     a = ap.parse_args()
     pkg = Package(a.data)
-    srv = ThreadingHTTPServer(('127.0.0.1', a.port), make_handler(pkg, a.dist))
+    # srv = ThreadingHTTPServer(('127.0.0.1', a.port), make_handler(pkg, a.dist))
+    host = os.environ.get('MESIS_HOST', '0.0.0.0')
+    srv = ThreadingHTTPServer((host, a.port), make_handler(pkg, a.dist))
     print(f'MESIS running at http://127.0.0.1:{a.port}/  (API under /api/)')
     srv.serve_forever()
 
