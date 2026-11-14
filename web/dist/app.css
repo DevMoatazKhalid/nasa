@@ -121,12 +121,12 @@ table.reg th{color:var(--mut);font-weight:500}
 .rep-list{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.rep-list button{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;text-align:start}
 .rep-list button.on{border-color:var(--rust2)}
 .report{background:#f6f2ec;color:#1b1b1b;border-radius:10px;padding:8px 28px 24px}.report h1{font-size:26px;color:#1b1b1b}.report h2{font-size:17px;border-bottom:1px solid #ccc;color:#1b1b1b}
-.ai-fab{position:fixed;bottom:18px;inset-inline-end:18px;z-index:15;background:var(--rust);color:#fff;border:0;border-radius:999px;padding:12px 18px;font-weight:600;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.ai-fab{position:fixed;bottom:0px;inset-inline-end:18px;z-index:15;background:var(--rust);color:#fff;border:0;border-radius:999px;padding:12px 18px;font-weight:600;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.4)}
 .ai{ position:fixed;bottom:76px;inset-inline-end:18px;width:min(420px,calc(100vw - 24px));height:min(560px,70vh);background:var(--bg2);border:1px solid var(--line);border-radius:12px;z-index:16;display:flex;flex-direction:column}
 .ai-h{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}.ai-h button{background:none;border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
 .ai-m{flex:1;overflow:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
 .msg{white-space:pre-wrap;padding:8px 10px;border-radius:8px;font-size:14px}.msg.user{background:rgba(210,98,42,.18);align-self:flex-end;max-width:90%}.msg.assistant{background:var(--bg3)}
-.ai-f{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}.ai-f textarea{flex:1;height:auto;padding:8px;resize:none}
+.ai-f{display:flex;gap:0px;padding:0px;border-top:0px solid var(--line)}.ai-f textarea{flex:1;height:auto;padding:8px;resize:none}
 @media (max-width:1100px){.work{grid-template-columns:1fr 360px}}
 @media (max-width:860px){
   .shell{grid-template-columns:1fr}.side{position:fixed;top:56px;bottom:0;inset-inline-start:0;width:240px;z-index:12;transform:translateX(-100%);transition:transform .2s}
