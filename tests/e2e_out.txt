@@ -1,0 +1,16 @@
+PASS overview loads
+PASS location panel shows Jezero — Location Intelligence Jezero 18.408°N, 77.687°E 13/20 datasets with values here 
+PASS elevation shown with status
+PASS rover proximity Perseverance
+PASS geolocated images near Jezero — 6 images
+PASS polar point reports TI unavailable (no invented value)
+PASS layer legend visible after toggle
+PASS missions produce candidates — {"water_ice":["Arcadia Planitia","Arcadia Planitia (48.5°N 197.5°E)","Arcadia Dorsa"],"habitat":["Arcadia Planitia","Acidalia Planitia","Hellas Planitia · Talas"],"mineral":["Nectaris Fossae · Capri Montes","Melas Fossae · Mazamba","Memnonia Fossae · Teknaf"]}
+PASS recommendations change with mission objective
+PASS four route alternatives computed —  Safest Shortest feasible Science priority Resource priority Distance 115 km 115 km 115 km 115 km Estimated time ~2 sols ~2 sols ~2 sols ~2 sols Climb 144 m 144
+PASS elevation profile drawn
+PASS report has routes, limitations and sources
+PASS Arabic switches to RTL
+PASS Arabic navigation labels
+PASS mobile: no horizontal overflow — scrollWidth 390
+PASS no page errors

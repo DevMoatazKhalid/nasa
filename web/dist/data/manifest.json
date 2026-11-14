@@ -1,0 +1,1157 @@
+{
+ "version": "1.0",
+ "built": "2026-11-14",
+ "grid_convention": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical; row 0 = north edge, col 0 = 0°E",
+ "radius_km": 3389.5,
+ "layers": [
+  {
+   "id": "dem",
+   "group": "terrain",
+   "status": "published",
+   "name": "Elevation (MOLA)",
+   "name_ar": "الارتفاع (MOLA)",
+   "source": {
+    "org": "NASA GSFC / MGS MOLA Science Team; archived at PDS Geosciences Node (WUSTL)",
+    "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+    "doi": "10.17189/1519460",
+    "instrument": "MGS Mars Orbiter Laser Altimeter (MOLA)",
+    "product": "MEGDR MEGT90N000EB (16 ppd median topography, v2.0)",
+    "acquired": "1997-09-15 to 2001-06-30",
+    "processed_by_source": "2003-04-03"
+   },
+   "grid": {
+    "file": "dem_8ppd.bin",
+    "dtype": "int16",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.0,
+    "offset": 0.0,
+    "nodata": null,
+    "units": "m"
+   },
+   "resolution_km": 7.4,
+   "coverage": "global",
+   "temporal": "static (1997-2001 mapping)",
+   "units": "m above MOLA areoid",
+   "processing": "16 ppd MEGDR block-averaged 2x2 to 8 ppd. Source values otherwise unchanged.",
+   "limitations": "Cells near the equator are partly interpolated in the source (~55% of 16 ppd bins hold a shot). 7.4 km cells hide local relief.",
+   "confidence": "high",
+   "legend": {
+    "ramp": "elev",
+    "min": -8000,
+    "max": 21000
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "slope",
+   "group": "terrain",
+   "status": "derived",
+   "name": "Slope",
+   "name_ar": "الانحدار",
+   "source": {
+    "org": "NASA GSFC / MGS MOLA Science Team; archived at PDS Geosciences Node (WUSTL)",
+    "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+    "doi": "10.17189/1519460",
+    "instrument": "MGS Mars Orbiter Laser Altimeter (MOLA)",
+    "product": "MEGDR MEGT90N000EB (16 ppd median topography, v2.0)",
+    "acquired": "1997-09-15 to 2001-06-30",
+    "processed_by_source": "2003-04-03"
+   },
+   "grid": {
+    "file": "slope_8ppd.bin",
+    "dtype": "uint8",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.25,
+    "offset": 0.0,
+    "nodata": null,
+    "units": "deg"
+   },
+   "resolution_km": 7.4,
+   "coverage": "global",
+   "temporal": "static",
+   "units": "degrees",
+   "processing": "Central-difference gradient on the 16 ppd (~3.7 km) DEM with metric pixel spacing, maximum of the 2x2 block retained (conservative).",
+   "limitations": "A 3.7 km baseline strongly under-estimates metre-scale slopes; values >~5 deg already indicate rugged terrain. Not a rover-traverse safety product.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "hazard",
+    "min": 0,
+    "max": 15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "rough",
+   "group": "terrain",
+   "status": "derived",
+   "name": "Terrain roughness",
+   "name_ar": "خشونة التضاريس",
+   "source": {
+    "org": "NASA GSFC / MGS MOLA Science Team; archived at PDS Geosciences Node (WUSTL)",
+    "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+    "doi": "10.17189/1519460",
+    "instrument": "MGS Mars Orbiter Laser Altimeter (MOLA)",
+    "product": "MEGDR MEGT90N000EB (16 ppd median topography, v2.0)",
+    "acquired": "1997-09-15 to 2001-06-30",
+    "processed_by_source": "2003-04-03"
+   },
+   "grid": {
+    "file": "rough_8ppd.bin",
+    "dtype": "uint8",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 8,
+    "offset": 0.0,
+    "nodata": null,
+    "units": "m"
+   },
+   "resolution_km": 7.4,
+   "coverage": "global",
+   "temporal": "static",
+   "units": "m (local std. dev.)",
+   "processing": "Standard deviation of elevation in a 3x3 window at 16 ppd, averaged to 8 ppd.",
+   "limitations": "Kilometre-scale relief index only; boulder- and dune-scale roughness are not represented.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "hazard",
+    "min": 0,
+    "max": 400
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "crater_density",
+   "group": "terrain",
+   "status": "derived",
+   "name": "Crater density (≥1 km)",
+   "name_ar": "كثافة الفوهات",
+   "source": {
+    "org": "Robbins & Hynek (2012), Mars crater database 2020 release (user-supplied CSV)",
+    "url": "https://doi.org/10.1029/2011JE003966",
+    "doi": "10.1029/2011JE003966",
+    "product": "Catalog_Mars_Release_2020_1kmPlus_FullMorphData.csv"
+   },
+   "grid": {
+    "file": "crater_density_1deg.bin",
+    "dtype": "float32",
+    "width": 360,
+    "height": 180,
+    "ppd": 1,
+    "lon0": 0,
+    "lat0": 90,
+    "scale": 1,
+    "offset": 0,
+    "nodata": null,
+    "units": "craters per 10^4 km2"
+   },
+   "resolution_km": 59,
+   "coverage": "global",
+   "temporal": "static",
+   "units": "craters ≥1 km per 10,000 km²",
+   "processing": "Crater centres binned per 1° cell and divided by true spherical cell area.",
+   "limitations": "Uses crater centres only (no rim polygons). Density reflects surface age as well as hazard.",
+   "confidence": "high",
+   "legend": {
+    "ramp": "hazard",
+    "min": 0,
+    "max": 80
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "ti",
+   "group": "environment",
+   "status": "published",
+   "name": "Thermal inertia (TES)",
+   "name_ar": "القصور الحراري",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Thermal_Inertia_numeric (Christensen et al. 2001)",
+    "doi": "10.1029/2000JE001370",
+    "acquired": "1997-2003"
+   },
+   "grid": {
+    "file": "tes_ti_8ppd.bin",
+    "dtype": "uint16",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.046153846153846156,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "J m-2 K-1 s-1/2",
+    "raw_stats": {
+     "min": 27.0,
+     "max": 602.0,
+     "p01": 31.0,
+     "p50": 206.0,
+     "p99": 432.0,
+     "valid_frac": 0.7743055555555556,
+     "shape": [
+      1440,
+      2880
+     ]
+    }
+   },
+   "resolution_km": 7.4,
+   "coverage": "~78% (no data poleward of ~60-80°)",
+   "temporal": "multi-year composite",
+   "units": "J m⁻² K⁻¹ s⁻½ (tiu)",
+   "processing": "ASU numeric product is an 8-bit stretch (256 levels) clipped to 27-602 tiu; floor value 25 masked as polar no-data after latitude-band verification.",
+   "limitations": "Surface property, NOT temperature. Values above ~602 tiu are clipped in this product.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 30,
+    "max": 600
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "albedo",
+   "group": "environment",
+   "status": "published",
+   "name": "Albedo (TES Lambert)",
+   "name_ar": "الوضاءة",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Lambert_Albedo_numeric",
+    "doi": "10.1029/2000JE001370"
+   },
+   "grid": {
+    "file": "tes_albedo_8ppd.bin",
+    "dtype": "uint16",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "unitless",
+    "raw_stats": {
+     "min": 0.08094488084316254,
+     "max": 0.3209448754787445,
+     "p01": 0.09795275330543518,
+     "p50": 0.18960629403591156,
+     "p99": 0.3209448754787445,
+     "valid_frac": 0.9694444444444444,
+     "shape": [
+      1440,
+      2880
+     ]
+    }
+   },
+   "resolution_km": 7.4,
+   "coverage": "~97%",
+   "temporal": "multi-year composite",
+   "units": "unitless",
+   "processing": "8-bit stretch (0.08-0.32) from ASU; floor 0.08 masked as no-data at the poles.",
+   "limitations": "Bright = dusty in most mid-latitude regions; polar frost contaminates high latitudes.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "grey",
+    "min": 0.09,
+    "max": 0.32
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "dci",
+   "group": "environment",
+   "status": "published",
+   "name": "Dust cover index (TES)",
+   "name_ar": "مؤشر الغطاء الغباري",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_dust_index_16ppd_numeric (Ruff & Christensen 2002)",
+    "doi": "10.1029/2001JE001580"
+   },
+   "grid": {
+    "file": "tes_dci_8ppd.bin",
+    "dtype": "uint16",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 3.846153846153846e-06,
+    "offset": 0.8,
+    "nodata": 65535,
+    "units": "emissivity index",
+    "raw_stats": {
+     "min": 0.8501378297805786,
+     "max": 0.990551233291626,
+     "p01": 0.9200000166893005,
+     "p50": 0.9628543853759766,
+     "p99": 0.9806299209594727,
+     "valid_frac": 0.7897342785493827,
+     "shape": [
+      1440,
+      2880
+     ]
+    }
+   },
+   "resolution_km": 7.4,
+   "coverage": "~79%",
+   "temporal": "multi-year composite",
+   "units": "emissivity index",
+   "processing": "Resampled by the ASU map server from 16 to 8 ppd; floor 0.85 masked as polar no-data.",
+   "limitations": "Lower values (<~0.94) indicate dust-mantled surfaces. Describes surface dust cover, not atmospheric dust or storms.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "seq_r",
+    "min": 0.92,
+    "max": 0.985
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "rock",
+   "group": "environment",
+   "status": "published",
+   "name": "Rock abundance (TES)",
+   "name_ar": "وفرة الصخور",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "tes_rock_abundance_filled_numeric (Nowicki & Christensen 2007)",
+    "doi": "10.1029/2006JE002798"
+   },
+   "grid": {
+    "file": "tes_rock_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.0015384615384615385,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "% area",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 58.0,
+     "p01": 0.0,
+     "p50": 1.7312500476837158,
+     "p99": 36.75,
+     "valid_frac": 1.0,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "global (gap-filled)",
+   "temporal": "composite",
+   "units": "% of surface covered by rocks",
+   "processing": "Re-expressed on the shared grid; values unchanged.",
+   "limitations": "\"Filled\" product interpolates gaps. Rocks are >~0.1-0.15 m blocks inferred thermally.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "hazard",
+    "min": 0,
+    "max": 30
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "rad",
+   "group": "environment",
+   "status": "modeled",
+   "name": "GCR dose rate (model)",
+   "name_ar": "جرعة الإشعاع الكوني (نموذج)",
+   "source": {
+    "org": "Model in this platform, anchored to MSL RAD (Hassler et al. 2014) and the column-depth dependence of Guo et al. (2017)",
+    "url": "https://doi.org/10.1002/2016JE005206",
+    "doi": "10.1126/science.1244797; 10.1002/2016JE005206",
+    "instrument": "MSL Radiation Assessment Detector (anchor only)"
+   },
+   "grid": null,
+   "derived_from": "dem",
+   "resolution_km": 7.4,
+   "coverage": "global",
+   "temporal": "solar-cycle average; not live",
+   "units": "mGy/day (absorbed, GCR, surface)",
+   "processing": "column = P0·exp(-z/H)/g with P0=610 Pa, H=11.1 km, g=3.71 m/s²; dose = 0.21 mGy/day × (1 − k·(column − 22.9 g/cm²)), k = 0.015 per g/cm² (range 0.010-0.020).",
+   "limitations": "GCR only — excludes solar particle events (see SEP study in sources). Ignores seasonal pressure cycle, terrain shielding and solar modulation (±~30%). Valid only as a relative indicator.",
+   "confidence": "low",
+   "legend": {
+    "ramp": "hazard",
+    "min": 0.17,
+    "max": 0.3
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "swim01",
+   "group": "resources",
+   "status": "published",
+   "name": "Ice consistency 0-1 m (SWIM)",
+   "name_ar": "توافق الجليد ٠-١ م (SWIM)",
+   "source": {
+    "org": "Mars Subsurface Water Ice Mapping (SWIM), Planetary Science Institute",
+    "url": "https://swim.psi.edu/SWIM4MIMProducts.php",
+    "doi": "10.1038/s41550-020-01290-z; 10.3847/PSJ/ad9b24",
+    "product": "SWIM4MIM Combined Ice Consistency Map (0-1 m), GeoTIFF",
+    "instrument": "Composite: Odyssey neutron, thermal, geomorphology, SHARAD radar surface power"
+   },
+   "grid": {
+    "file": "swim_ci_0_1_4ppd.bin",
+    "dtype": "int16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.0001,
+    "offset": 0.0,
+    "nodata": -32768,
+    "units": "ice consistency (-1..1)",
+    "stats": [
+     -0.3700000047683716,
+     0.9724999928474426,
+     0.09434783542505518
+    ]
+   },
+   "resolution_km": 15,
+   "coverage": "60°S-60°N",
+   "temporal": "static composite (2025 release)",
+   "units": "consistency −1 (inconsistent) … +1 (consistent with ice)",
+   "processing": "20 ppd GeoTIFF block-averaged 5x5 to 4 ppd and shifted to 0-360°E.",
+   "limitations": "Consistency with ice is not confirmation of ice. Not mapped poleward of 60°.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "div",
+    "min": -1,
+    "max": 1
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "swim15",
+   "group": "resources",
+   "status": "published",
+   "name": "Ice consistency 1-5 m (SWIM)",
+   "name_ar": "توافق الجليد ١-٥ م",
+   "source": {
+    "org": "SWIM, Planetary Science Institute",
+    "url": "https://swim.psi.edu/SWIM4MIMProducts.php",
+    "doi": "10.3847/PSJ/ad9b24",
+    "product": "SWIM4MIM Combined Ice Consistency Map (1-5 m)",
+    "instrument": "Composite incl. SHARAD dielectric estimates"
+   },
+   "grid": {
+    "file": "swim_ci_1_5_4ppd.bin",
+    "dtype": "int16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.0001,
+    "offset": 0.0,
+    "nodata": -32768,
+    "units": "ice consistency (-1..1)",
+    "stats": [
+     -0.4285714328289032,
+     0.9129561877250671,
+     0.1409523122779734
+    ]
+   },
+   "resolution_km": 15,
+   "coverage": "60°S-60°N",
+   "temporal": "static composite",
+   "units": "consistency −1…+1",
+   "processing": "As 0-1 m map.",
+   "limitations": "As 0-1 m map; radar dielectric inputs are sparse.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "div",
+    "min": -1,
+    "max": 1
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "swim5",
+   "group": "resources",
+   "status": "published",
+   "name": "Ice consistency >5 m (SWIM)",
+   "name_ar": "توافق الجليد >٥ م",
+   "source": {
+    "org": "SWIM, Planetary Science Institute",
+    "url": "https://swim.psi.edu/SWIM4MIMProducts.php",
+    "doi": "10.3847/PSJ/ad9b24",
+    "product": "SWIM4MIM Combined Ice Consistency Map (>5 m)"
+   },
+   "grid": {
+    "file": "swim_ci_5_4ppd.bin",
+    "dtype": "int16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.0001,
+    "offset": 0.0,
+    "nodata": -32768,
+    "units": "ice consistency (-1..1)",
+    "stats": [
+     -0.5,
+     1.0,
+     0.15260262769832036
+    ]
+   },
+   "resolution_km": 15,
+   "coverage": "60°S-60°N",
+   "temporal": "static composite",
+   "units": "consistency −1…+1",
+   "processing": "As 0-1 m map.",
+   "limitations": "Deep geomorphology + radar only.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "div",
+    "min": -1,
+    "max": 1
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "grs_h2o",
+   "group": "resources",
+   "status": "published",
+   "name": "Water-equivalent hydrogen (GRS)",
+   "name_ar": "الهيدروجين المكافئ للماء",
+   "source": {
+    "org": "Univ. of Arizona / Mars Odyssey GRS team; PDS Geosciences Node",
+    "url": "https://pds-geosciences.wustl.edu/missions/odyssey/grs_elements.html",
+    "doi": "10.17189/1519480",
+    "instrument": "Mars Odyssey Gamma Ray Spectrometer",
+    "product": "H2O_SR_5X5.TAB (ODY-M-GRS-5-ELEMENTS-V1.0)",
+    "acquired": "2002-06-04 to 2005-04-03"
+   },
+   "grid": {
+    "file": "grs_h2o_5deg.bin",
+    "dtype": "float32",
+    "width": 72,
+    "height": 36,
+    "ppd": 0.2,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.0,
+    "offset": 0.0,
+    "nodata": -1,
+    "units": "wt% H2O",
+    "sigma_file": "grs_h2o_5deg_sigma.bin",
+    "stats": [
+     1.6449999809265137,
+     7.3979997634887695
+    ]
+   },
+   "resolution_km": 300,
+   "coverage": "~±57° (polar regions masked by source)",
+   "temporal": "2002-2005 average",
+   "units": "wt% H2O equivalent (upper ~1 m)",
+   "processing": "5°x5° smoothed bins placed on a 0.2 ppd grid; 1σ uncertainty kept.",
+   "limitations": "Hydrogen may be bound in hydrated minerals — NOT direct evidence of ice. Footprint ~ hundreds of km.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 2,
+    "max": 8
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "ns_epi",
+   "group": "resources",
+   "status": "published",
+   "name": "Epithermal neutrons (Odyssey NS)",
+   "name_ar": "النيوترونات فوق الحرارية",
+   "source": {
+    "org": "Los Alamos NL / Mars Odyssey NS; served by ASU MSFF",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "Mars Odyssey Neutron Spectrometer",
+    "product": "NS_Epithermal_numeric"
+   },
+   "grid": {
+    "file": "ns_epithermal_2ppd.bin",
+    "dtype": "uint16",
+    "width": 720,
+    "height": 360,
+    "ppd": 2,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 0.00046153846153846153,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "counts/s (normalised)",
+    "raw_stats": {
+     "min": 1.319000005722046,
+     "max": 12.414999961853027,
+     "p01": 1.4769999980926514,
+     "p50": 6.139999866485596,
+     "p99": 9.854000091552734,
+     "valid_frac": 0.9888888888888889,
+     "shape": [
+      360,
+      720
+     ]
+    }
+   },
+   "resolution_km": 30,
+   "coverage": "global (incl. poles)",
+   "temporal": "multi-year average",
+   "units": "counts/s (lower = more hydrogen)",
+   "processing": "Values unchanged; −32768 masked.",
+   "limitations": "Indirect hydrogen proxy with ~600 km footprint; the grid is finer than the physical resolution.",
+   "confidence": "medium",
+   "legend": {
+    "ramp": "seq_r",
+    "min": 1.5,
+    "max": 10
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "hematite",
+   "group": "resources",
+   "status": "published",
+   "name": "Hematite abundance (TES)",
+   "name_ar": "وفرة الهيماتيت",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Hematite_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_hematite_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.22377972304821014,
+     "p01": 0.0,
+     "p50": 0.0,
+     "p99": 0.06761840730905533,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "olivine",
+   "group": "resources",
+   "status": "published",
+   "name": "Olivine abundance (TES)",
+   "name_ar": "وفرة الأوليفين",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Olivine_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_olivine_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.17419886589050293,
+     "p01": 0.0,
+     "p50": 0.0,
+     "p99": 0.03886345401406288,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "sulfate",
+   "group": "resources",
+   "status": "published",
+   "name": "Sulfate abundance (TES)",
+   "name_ar": "وفرة الكبريتات",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Sulfate_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_sulfate_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.2662256360054016,
+     "p01": 0.0,
+     "p50": 0.022712549194693565,
+     "p99": 0.08070884644985199,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "glassclay",
+   "group": "resources",
+   "status": "published",
+   "name": "Glass / clay (high-Si) abundance (TES)",
+   "name_ar": "وفرة الزجاج/الطين",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Glass_Clay_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_glassclay_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.7328559160232544,
+     "p01": 0.0,
+     "p50": 0.0514867790043354,
+     "p99": 0.19269368052482605,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "carbonate",
+   "group": "resources",
+   "status": "published",
+   "name": "Carbonate abundance (TES)",
+   "name_ar": "وفرة الكربونات",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Carbonate_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_carbonate_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.1642163246870041,
+     "p01": 0.0,
+     "p50": 0.019120555371046066,
+     "p99": 0.07203848659992218,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "feldspar",
+   "group": "resources",
+   "status": "published",
+   "name": "Plagioclase feldspar abundance (TES)",
+   "name_ar": "وفرة الفلسبار",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Feldspar_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_feldspar_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.147202268242836,
+     "p01": 0.0,
+     "p50": 0.021669872105121613,
+     "p99": 0.058461930602788925,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "cpx",
+   "group": "resources",
+   "status": "published",
+   "name": "High-Ca pyroxene abundance (TES)",
+   "name_ar": "وفرة البيروكسين",
+   "source": {
+    "org": "Arizona State University, Mars Space Flight Facility (MGS TES)",
+    "url": "https://www.mars.asu.edu/data/",
+    "instrument": "MGS Thermal Emission Spectrometer (TES)",
+    "product": "TES_Clinopyroxene_numeric (Bandfield 2002 spectral unmixing)",
+    "doi": "10.1029/2001JE001510"
+   },
+   "grid": {
+    "file": "tes_cpx_4ppd.bin",
+    "dtype": "uint16",
+    "width": 1440,
+    "height": 720,
+    "ppd": 4,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.5384615384615384e-05,
+    "offset": 0,
+    "nodata": 65535,
+    "units": "fraction",
+    "raw_stats": {
+     "min": 0.0,
+     "max": 0.2818993926048279,
+     "p01": 0.0,
+     "p50": 0.00856444425880909,
+     "p99": 0.15947282314300537,
+     "valid_frac": 0.7226726466049382,
+     "shape": [
+      720,
+      1440
+     ]
+    }
+   },
+   "resolution_km": 15,
+   "coverage": "~72% (dusty regions and poles excluded)",
+   "temporal": "composite",
+   "units": "areal fraction",
+   "processing": "Values unchanged; −1 masked.",
+   "limitations": "Spectral deconvolution abundances ±~0.05-0.10; detection limit ~0.10-0.15 for many phases. Not ore grades.",
+   "confidence": "low-medium",
+   "legend": {
+    "ramp": "seq",
+    "min": 0,
+    "max": 0.15
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  },
+  {
+   "id": "geology",
+   "group": "geology",
+   "status": "derived",
+   "name": "Geologic units (SIM 3292)",
+   "name_ar": "الوحدات الجيولوجية",
+   "source": {
+    "org": "USGS Astrogeology — Tanaka et al. (2014), Geologic Map of Mars, SIM 3292",
+    "doi": "10.3133/sim3292",
+    "url": "https://astrogeology.usgs.gov/pygeoapi/collections/mars/sim3292_global_geologic_map/units",
+    "product": "SIM3292 units (1,311 polygons, 1:20M)"
+   },
+   "grid": {
+    "file": "geology_sim3292_8ppd.bin",
+    "dtype": "uint8",
+    "width": 2880,
+    "height": 1440,
+    "ppd": 8,
+    "lon0": 0.0,
+    "lat0": 90.0,
+    "scale": 1.0,
+    "offset": 0.0,
+    "nodata": 255,
+    "units": "unit index"
+   },
+   "resolution_km": 7.4,
+   "coverage": "global",
+   "temporal": "static",
+   "units": "categorical unit",
+   "processing": "Polygons rasterised at 8 ppd (point-in-polygon at cell centres, holes respected).",
+   "limitations": "1:20,000,000 map: contacts accurate to tens of km. Unit ages from crater statistics.",
+   "confidence": "high (at map scale)",
+   "legend": {
+    "ramp": "cat"
+   },
+   "crs": "Mars 2000 sphere, planetocentric lat, east-positive lon 0-360, simple cylindrical"
+  }
+ ],
+ "vectors": {
+  "craters": {
+   "file": "craters.bin",
+   "meta": {
+    "id": "craters_robbins2020",
+    "records": 385049,
+    "rejected_rows": 0,
+    "record_bytes": 16,
+    "fields": [
+     "lat float32 deg N planetocentric",
+     "lon float32 deg E 0-360",
+     "diameter_km float32 (circle fit)",
+     "confidence uint8 (0-100, 255 unknown)",
+     "rim_degradation uint8 (1 fresh..4 degraded, 255 n/a)",
+     "flags uint8 (1 layered ejecta, 2 complex interior, 4 floor deposits)",
+     "pad"
+    ],
+    "sorted_by": "diameter desc",
+    "diameter_km_range": [
+     1.0000009536743164,
+     1088.0242919921875
+    ],
+    "density_grid": {
+     "file": "crater_density_1deg.bin",
+     "shape": [
+      180,
+      360
+     ],
+     "units": "craters >=1 km per 10^4 km^2",
+     "origin": "row 0 = 89.5N, col 0 = 0.5E",
+     "max": 367.3038685676641,
+     "mean": 22.40470503963377
+    }
+   },
+   "status": "published",
+   "source": {
+    "org": "Robbins & Hynek 2012 (2020 release), user-supplied",
+    "doi": "10.1029/2011JE003966"
+   }
+  },
+  "names": {
+   "file": "names.json",
+   "status": "published",
+   "count": 2055,
+   "source": {
+    "org": "IAU WGPSN / USGS Gazetteer of Planetary Nomenclature",
+    "url": "https://planetarynames.wr.usgs.gov/GIS_Downloads"
+   }
+  },
+  "rovers": {
+   "file": "rovers.json",
+   "status": "measured",
+   "images": 32,
+   "source": {
+    "org": "NASA/JPL MMGIS (Mars 2020, MSL localization) and NASA raw image API",
+    "url": "https://mars.nasa.gov/mars2020/multimedia/raw-images/"
+   }
+  },
+  "geology_units": {
+   "file": "geology_units.json"
+  }
+ },
+ "unavailable": [
+  {
+   "id": "mcs_dust",
+   "name": "Atmospheric dust opacity / storms (MCS)",
+   "reason": "MCS retrievals are along-track vertical profiles (DDR/EDR). No gridded, time-resolved product could be retrieved and validated in this build; the 2018 storm is covered by the user-supplied papers only.",
+   "url": "https://pdsatmospheres.nmsu.edu/data_and_services/atmospheres_data/MARS/aerosols.html"
+  },
+  {
+   "id": "sharad",
+   "name": "SHARAD radargrams",
+   "reason": "Radargrams require per-track interpretation; integrated indirectly through the SWIM composite which uses SHARAD surface power and dielectric estimates.",
+   "url": "https://sharad.psi.edu/"
+  },
+  {
+   "id": "crism",
+   "name": "CRISM targeted observations / MTRDR",
+   "reason": "Footprint-level products are tens of GB; not retrievable here. TES global mineral abundances are used instead and labelled with their detection limits.",
+   "url": "https://pds-geosciences.wustl.edu/missions/mro/crism.htm"
+  },
+  {
+   "id": "temp",
+   "name": "Gridded surface temperature",
+   "reason": "No gridded temperature product integrated. Thermal inertia is a material property, not temperature. Survival module uses published RAD/REMS ranges.",
+   "url": ""
+  },
+  {
+   "id": "rad_rdr",
+   "name": "RAD RDR time series",
+   "reason": "PDS PPI RDR tables not retrieved; the radiation model is anchored to published RAD results instead.",
+   "url": "https://search-pdsppi.igpp.ucla.edu/ditdos/readme?id=pds://PPI/MSL-M-RAD-3-RDR-V1.0"
+  },
+  {
+   "id": "soil_eng",
+   "name": "Soil engineering properties (cohesion, bearing capacity)",
+   "reason": "No global measured dataset exists. Values in reports are labelled as literature ranges from rover sites.",
+   "url": ""
+  }
+ ],
+ "synthetic": [],
+ "note": "No synthetic data is used in this build.",
+ "overview_dem": {
+  "file": "dem_2ppd.bin",
+  "dtype": "int16",
+  "width": 720,
+  "height": 360,
+  "ppd": 2,
+  "lon0": 0.0,
+  "lat0": 90.0,
+  "scale": 1.0,
+  "offset": 0.0,
+  "nodata": null,
+  "units": "m"
+ }
+}

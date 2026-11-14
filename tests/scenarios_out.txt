@@ -1,0 +1,159 @@
+{
+ "elev": {
+  "olympus": 20997,
+  "hellas": -8135,
+  "jezero": -2554
+ },
+ "dose": {
+  "hellas": 0.19272876823108842,
+  "gale": 0.20454887694898094,
+  "olympus": 0.2735614157118252
+ },
+ "ns65": 4.975846153846153,
+ "ice": {
+  "arcadia": [
+   0.6546000000000001,
+   "moderate"
+  ],
+  "meridiani": [
+   0.0194,
+   "weak"
+  ],
+  "northpole": [
+   6.576,
+   "strong"
+  ]
+ },
+ "missing": {
+  "ti85": null,
+  "grs75S": null,
+  "status": "unavailable"
+ },
+ "rank": {
+  "ice": [
+   [
+    "Arcadia Planitia",
+    49,
+    184,
+    0.89
+   ],
+   [
+    "Arcadia Planitia (48.5°N 197.5°E)",
+    49,
+    198,
+    0.89
+   ],
+   [
+    "Arcadia Dorsa",
+    45,
+    207,
+    0.88
+   ],
+   [
+    "Hellas Planitia · Zea Dorsa",
+    -48,
+    86,
+    0.87
+   ],
+   [
+    "Utopia Planitia · Mie",
+    49,
+    145,
+    0.87
+   ]
+  ],
+  "agri": [
+   [
+    "Hellas Planitia · Terby",
+    -31,
+    75,
+    0.79
+   ],
+   [
+    "Hellas Planitia · Zea Dorsa",
+    -48,
+    86,
+    0.78
+   ],
+   [
+    "Coronae Planum",
+    -31,
+    68,
+    0.77
+   ],
+   [
+    "Hellas Chaos",
+    -48,
+    63,
+    0.77
+   ],
+   [
+    "Navua Valles · Talas",
+    -36,
+    80,
+    0.77
+   ]
+  ]
+ },
+ "iceMeanLat": 47.7,
+ "agriMeanLat": 39.3,
+ "maxDistOk": true,
+ "sci": [
+  [
+   "Nili Fossae · Hargraves",
+   126
+  ],
+  [
+   "Terra Sabaea · Baldet",
+   623
+  ],
+  [
+   "Arena Colles · Peridier",
+   561
+  ],
+  [
+   "Arena Colles · Peridier (20.5°N 83.5°E)",
+   359
+  ],
+  [
+   "Terra Sabaea · Beruri",
+   658
+  ]
+ ],
+ "vm": {
+  "safest": [
+   1563,
+   3,
+   3181
+  ],
+  "shortest": [
+   1374,
+   9.8,
+   1462
+  ]
+ },
+ "flat": {
+  "route": 428,
+  "greatCircle": 427,
+  "ratio": 1.002
+ },
+ "scarp": "Destination cell exceeds the 8° slope limit for EVA on foot.",
+ "galeUnit": "Htu",
+ "galeInside": 154.08726501464844
+}
+PASS Olympus summit > 20 km
+PASS Hellas floor < -6.5 km
+PASS Jezero ~ -2.6 km
+PASS dose ordered hellas<gale<olympus
+PASS Gale dose ~0.21
+PASS Arcadia SWIM > Meridiani SWIM
+PASS north polar cap strong ice evidence
+PASS TI at 85N unavailable
+PASS GRS masked at 75S
+PASS ice missions favour higher latitudes than agriculture
+PASS max distance respected
+PASS flat-plain route within 3% of great circle
+PASS Olympus Mons crossing: both routes found
+PASS safest route avoids steeper terrain than shortest
+PASS shortest is not longer than safest
+PASS Gale centre inside 154 km crater

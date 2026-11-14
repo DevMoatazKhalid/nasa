@@ -1,0 +1,25 @@
+{
+ "note": "Inventory of the user-supplied Drive export (Data_Nasa zip, 21 files) and related files found in the user's Downloads folder, inspected 2026-11-14.",
+ "drive_folder": "The Google Drive folder link itself could not be opened from the build environment (not reachable); its exported zip was inspected instead. The two HTML prototypes (Marswalk_HorizonX_From_Scratch.html, Survival Guide 3.0.html) were not in the export and were not found locally, so they could not be reviewed.",
+ "files": [
+  ["Catalog_Mars_Release_2020_1kmPlus_FullMorphData.csv", "Crater catalogue, 385,048 craters >=1 km with morphology (Robbins & Hynek)", "Integrated: crater layer, crater density, proximity analysis", "used"],
+  ["Data.txt", "List of 15 source URLs (MOLA MEGDR, Trek, ASU, GRS, OMEGA, M2020, SPICE, Analyst's Notebook, SVS)", "Followed: MOLA, ASU, GRS, M2020 raw images used; Trek tiles, SPICE, OMEGA, Analyst's Notebook not integrable here (see notes)", "used"],
+  ["TES Thermal Inertia.rar", "RAR5 archive; extracted copy contains colourised browse PNGs only (not numeric)", "Replaced by numeric ASU VICAR grid TES_Thermal_Inertia_numeric", "superseded"],
+  ["TES Mineral Maps.rar", "74-byte archive containing only an empty folder", "Empty — numeric TES mineral grids fetched from ASU instead", "empty"],
+  ["Curiosity RAD.rar", "Contains one JPEG figure (PIA16020, RAD surface observations)", "Figure only, not data; RAD values taken from Hassler et al. 2014 for the radiation model anchor", "reference"],
+  ["sim3292_map.pdf / sim3292_pamphlet.pdf / mars-geologic-map.pdf", "USGS SIM 3292 map sheet, pamphlet (unit descriptions, ages) and inset map", "Used for unit age/group conventions; the queryable layer uses the official GIS polygons", "reference"],
+  ["Volcanoes .pdf", "USGS SIM 3470 map sheet (single volcano region)", "Map PDF; not quantitative", "reference"],
+  ["Mars_climate_zones.jpg", "Illustrative climate-zone image", "Image without numeric grid or georeference; not used as data", "not used"],
+  ["CRISM, OMEGA .pptx", "Presentation slides about the instruments", "Background reading", "reference"],
+  ["Kass et al. 2019 (GRL) — MCS observation of 2018 global dust storm", "Peer-reviewed paper", "Cited in Survival module (storm timeline)", "reference"],
+  ["Simulation_of_the_2018_Global_Dust_Storm (JGR 2019)", "GCM simulation paper", "Background for dust module", "reference"],
+  ["Seu et al. 2007 — SHARAD; Murchie et al. 2007 — CRISM", "Instrument papers", "Background; SHARAD used indirectly via SWIM", "reference"],
+  ["What_Is_the_Radiation_Impact_of_Extreme_Solar_Ener.pdf", "SEP dose vs atmospheric depth (Zhang, Guo et al.)", "Cited for radiation limitations (SEP excluded from GCR model)", "reference"],
+  ["mars_ice_drilling_assessment_v6_for_public_release.pdf", "NASA 2016 ISRU ice mining assessment (Hoffman et al.)", "Background for ice mission criteria", "reference"],
+  ["GIS_analysis_of_promising_landing_sites_for_manned.pdf", "GIS landing-site study (Kuziakina et al. 2019)", "Background for habitat/landing criteria", "reference"],
+  ["s44461-025-00001-8.pdf", "Cannon 2025, Mineral resources of Mars", "Cited in mineral mission notes (Gale/Jezero deposit indicators)", "reference"],
+  ["Areths / PPACS (Catena 2026)", "Martian soil classification framework", "Background; no gridded soil dataset exists", "reference"],
+  ["PIA07240.tif (Downloads)", "Artist's concept of MRO", "Illustration — excluded", "not used"],
+  ["TES_RMS_Error_numeric (Downloads)", "ASU VICAR 4 ppd TES spectral-fit RMS error (0-0.01, -1 nodata)", "Quality metric, not a surface property; not mapped", "not used"]
+ ]
+}
