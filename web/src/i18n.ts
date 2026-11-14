@@ -33,7 +33,7 @@ const en = {
   m_water_ice: 'Water ice exploration', m_mineral: 'Mineral exploration', m_science: 'Scientific research', m_agriculture: 'Agricultural research',
   m_habitat: 'Habitat & shelter construction', m_exploration: 'Exploration mission', m_infrastructure: 'Infrastructure development',
   report: 'Mission intelligence report', export_html: 'Download HTML', export_json: 'Download JSON', copy_md: 'Copy as Markdown', copied: 'Copied',
-  no_reports: 'No reports yet. Run a mission analysis or a route and choose “Generate report”.', ai_title: 'Mission assistant',
+  no_reports: 'No reports yet. Run a mission analysis or a route and choose “Generate report”.', ai_title: '',
   ai_ph: 'Describe your mission or ask about the data…', ai_off: 'The AI assistant needs the page to be opened inside Claude. All analysis tools work without it.',
   send: 'Send', lang: 'العربية', recent: 'Recent locations', regions: 'Important exploration regions', open: 'Open', start_mission: 'Start a mission',
   data_avail: 'Data availability', not_integrated: 'Investigated but not integrated', user_files: 'Your supplied materials',
