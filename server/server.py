@@ -127,7 +127,7 @@ def main():
     # srv = ThreadingHTTPServer(('127.0.0.1', a.port), make_handler(pkg, a.dist))
     host = os.environ.get('MESIS_HOST', '0.0.0.0')
     srv = ThreadingHTTPServer((host, a.port), make_handler(pkg, a.dist))
-    print(f'MESIS running at http://127.0.0.1:{a.port}/  (API under /api/)')
+    print(f'MESIS running at http://{host}:{a.port}/  (API under /api/)')
     srv.serve_forever()
 
 
