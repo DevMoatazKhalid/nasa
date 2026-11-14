@@ -13,7 +13,7 @@ import { LocationPanel } from './ui/LocationPanel';
 import { MissionPanel } from './ui/MissionPanel';
 import { NavPanel, ROUTE_COLORS } from './ui/NavPanel';
 import { Overview, Survival, DataSources, Reports } from './ui/Pages';
-import { Assistant } from './ui/Assistant';
+// import { Assistant } from './ui/Assistant';
 
 const ROUTES = ['overview', 'explorer', 'location', 'missions', 'navigation', 'survival', 'data', 'reports'] as const;
 type RouteId = typeof ROUTES[number];
@@ -126,9 +126,9 @@ export function App() {
         {route === 'data' && <DataSources ds={ds} />}
         {route === 'reports' && <Reports reports={reports} sel={repSel} setSel={setRepSel} save={save} />}
       </main>
-      <Assistant ds={ds} eng={eng} ma={ma} router={router} context={context} prompt={aiPrompt}
+      {/* <Assistant ds={ds} eng={eng} ma={ma} router={router} context={context} prompt={aiPrompt}
         onSites={(c, m) => { setCfg({ ...cfg, mission: m }); setMres({ candidates: c, scanned: 63360, excluded: { slope: 0, distance: 0, region: 0, polar: 0 } }); setMsel(0); go('missions'); }}
-        onFocus={(la, lo) => setFocus({ lat: la, lon: lo, t: Date.now() })} />
+        onFocus={(la, lo) => setFocus({ lat: la, lon: lo, t: Date.now() })} /> */}
     </div>
   </LangCtx.Provider>;
 }

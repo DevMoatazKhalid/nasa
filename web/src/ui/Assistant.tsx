@@ -7,7 +7,7 @@ import { MissionAnalyzer, MISSIONS, MissionId } from '../engine/missions';
 import { Router, Profile, Mobility } from '../engine/route';
 import { DataStore } from '../engine/data';
 
-const SYSTEM = `You are the MESIS  for Mars exploration planning. Rules:
+const SYSTEM = `You are the MESIS mission assistant for Mars exploration planning. Rules:
 - Every number or fact about a location, dataset or route MUST come from a tool result in this conversation. If no tool can support an answer, say so plainly.
 - Always state the data status of values you cite (measured, published, derived, modeled, inferred, unavailable). Never call hydrogen or ice-consistency evidence "confirmed ice".
 - All data are archival, not live. Routes are strategic corridors on 7.4 km cells, never guaranteed safe.
@@ -69,5 +69,16 @@ export function Assistant(p: { ds: DataStore; eng: Engine; ma: MissionAnalyzer; 
     } finally { setBusy(false); }
   }
 
-  return;
+  return <>
+    <button className="ai-fab" onClick={() => setOpen(!open)} aria-expanded={open}>{t('ai_title')}</button>
+    {open && <div className="ai" role="dialog" aria-label={t('ai_title')}>
+      <div className="ai-h"><b>{t('ai_title')}</b><button onClick={() => setOpen(false)}>{t('close')}</button></div>
+      <div className="ai-m">{sample === null ? <p className="muted">{t('ai_off')}</p> : msgs.length === 0 ? <div className="muted small">
+        <p>Try: “I need a crewed habitat site near accessible ice within 1,500 km of Jezero, low risk.” · “What does the data say about Arcadia Planitia?” · “Compare a safe route from Gale to Aeolis Mons summit.”</p></div>
+        : msgs.map((m, i) => <div key={i} className={'msg ' + m.role}>{m.content}</div>)}</div>
+      {sample !== null && <form className="ai-f" onSubmit={e => { e.preventDefault(); send(inp); }}>
+        <textarea value={inp} onChange={e => setInp(e.target.value)} placeholder={t('ai_ph')} rows={2} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(inp); } }} />
+        <button className="btn primary" disabled={busy || !sample}>{busy ? '…' : t('send')}</button></form>}
+    </div>}
+  </>;
 }
